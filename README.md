@@ -5,6 +5,10 @@ MOCTX.js is a monad wrapper around the CanvasRenderingContext2D Object built on 
 
 The entire standards compliant interface is available and chainable. Any properties are available as setters and getters.
 
+Quick Start
+-----------
+
+Grab moctx.js + monad.js and slap them into your head. Enjoy.
 
 Examples
 --------
