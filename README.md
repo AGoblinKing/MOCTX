@@ -8,7 +8,9 @@ The entire standards compliant interface is available and chainable. Any propert
 Quick Start
 -----------
 
-Grab moctx.js + monad.js and slap them into your head. Enjoy.
+Grab moctx.min.js and slap it into your head. Enjoy. 
+
+(Check out moctx.js and monads/monad.js for implementation)
 
 Examples
 --------
