@@ -21,7 +21,7 @@ Passing an existing canvas 2D context and drawing a line:
 
     var canvas = document.getElementById("someCanvas");
     var ctx = canvas.getContext("2d");
-    
+
     MOCTX(ctx)
       .setStrokeStyle("rgb(0, 0, 0)")
       .beginPath()
@@ -45,3 +45,12 @@ Oh and I added helper functions to set the width and the height of the canvas:
 
     MOCTX()
       .setSize(200, 400);
+
+And hiding and showing...
+
+    MOCTX()
+      .hide()
+      .show()
+      .toggle()
+
+Positioning is up to you and your CSS though.

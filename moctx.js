@@ -79,6 +79,19 @@ var MOCTX = (function () {
       ctx.canvas.setAttribute("height", height);
       return ctx;
     })
+    .lift("hide", function (ctx) {
+      ctx.canvas.style.display = "none";
+    })
+    .lift("show", function (ctx) {
+      ctx.canvas.style.display = "block";
+    })
+    .lift("toggle", function (ctx) {
+      if (ctx.canvas.style.display === "none") {
+        ctx.canvas.style.display = "block";
+      } else {
+        ctx.canvas.style.display = "none";
+      }
+    })
     .lift("setSize", function (ctx, width, height) {
       ctx.canvas.setAttribute("height", height);
       ctx.canvas.setAttribute("width", width);
