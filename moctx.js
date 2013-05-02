@@ -3,55 +3,55 @@
 // 2013-05-23
 
 // MIT License
+function XMONAD(modifier) {
+  'use strict';
+  var monad = MONAD(modifier);
+
+  monad.properties = function () {
+    Array.prototype.slice.call(arguments, 0).forEach(function (name) {
+      var upName = name.charAt(0).toUpperCase() + name.slice(1);
+
+      monad.lift("set" + upName, function (value, mod) {
+        value[name] = mod;
+        return value;
+      });
+
+      monad.lift_value("get" + upName, function (value) {
+        return value[name];
+      });
+    });
+    return this;
+  };
+
+  monad.lifts = function () {
+    Array.prototype.slice.call(arguments, 0).forEach(function (name) {
+      monad.lift(name, function (value) {
+        if (typeof value[name] === "function") {
+          value[name].apply(value, Array.prototype.slice.call(arguments, 1));
+        }
+        return monad(value);
+      });
+    });
+    return this;
+  };
+
+  monad.lift_values = function () {
+    Array.prototype.slice.call(arguments, 0).forEach(function (name) {
+      monad.lift_value(name, function (value) {
+        if (typeof value[name] === "function") {
+          return value[name].apply(value, Array.prototype.slice.call(arguments, 1));
+        }
+        return null;
+      });
+    });
+    return this;
+  };
+
+  return monad;
+}
 
 var MOCTX = (function () {
   'use strict';
-
-  function XMONAD(modifier) {
-    var monad = MONAD(modifier);
-
-    monad.properties = function () {
-      Array.prototype.slice.call(arguments, 0).forEach(function (name) {
-        var upName = name.charAt(0).toUpperCase() + name.slice(1);
-
-        monad.lift("set" + upName, function (value, mod) {
-          value[name] = mod;
-          return value;
-        });
-
-        monad.lift_value("get" + upName, function (value) {
-          return value[name];
-        });
-      });
-      return this;
-    };
-
-    monad.lifts = function () {
-      Array.prototype.slice.call(arguments, 0).forEach(function (name) {
-        monad.lift(name, function (value) {
-          if (typeof value[name] === "function") {
-            value[name].apply(value, Array.prototype.slice.call(arguments, 1));
-          }
-          return value;
-        });
-      });
-      return this;
-    };
-
-    monad.lift_values = function () {
-      Array.prototype.slice.call(arguments, 0).forEach(function (name) {
-        monad.lift_value(name, function (value) {
-          if (typeof value[name] === "function") {
-            return value[name].apply(value, Array.prototype.slice.call(arguments, 1));
-          }
-          return null;
-        });
-      });
-      return this;
-    };
-
-    return monad;
-  }
 
   var MOCTX = XMONAD(function (monad, value) {
     if (value === undefined) {
