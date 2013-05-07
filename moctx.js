@@ -81,9 +81,11 @@ var MOCTX = (function () {
     })
     .lift("hide", function (ctx) {
       ctx.canvas.style.display = "none";
+      return ctx;
     })
     .lift("show", function (ctx) {
       ctx.canvas.style.display = "block";
+      return ctx;
     })
     .lift("toggle", function (ctx) {
       if (ctx.canvas.style.display === "none") {
@@ -91,6 +93,7 @@ var MOCTX = (function () {
       } else {
         ctx.canvas.style.display = "none";
       }
+      return ctx;
     })
     .lift("setSize", function (ctx, width, height) {
       ctx.canvas.setAttribute("height", height);
